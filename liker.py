@@ -33,10 +33,18 @@ password_input.submit()
 
 time.sleep(5)
 
+# press x to the update notification
+try:
+	x = browser.find_element_by_class_name("_ibk5z")
+	x.click()
+except:
+	pass
+
+
 while True:
 	# Like all the images that are loaded on login
 	#for like_link in browser.find_elements_by_link_text('Like'):
-    	#print like_link.getText()
+    	#print(like_link.getText())
 		#like_link.click()
 
 	for x in browser.find_elements_by_class_name('_8ab8k'):
@@ -46,9 +54,14 @@ while True:
 				try:
 					z = x.find_element_by_link_text('Like')
 					z.click()
-					print y.text + " at " + str(datetime.now())
-				except NoSuchElementException:
-					pass
+					print(y.text + " at " + str(datetime.now()))
+				except NoSuchElementException: # Chinese version
+					try:
+						z = x.find_element_by_link_text('讚')
+						z.click()
+						print(y.text + " at " + str(datetime.now()))
+					except NoSuchElementException:
+						pass
 	time.sleep(2)
 	browser.get('https://instagram.com/')
 	#time.sleep(2)
